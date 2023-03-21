@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #my_app
     'home_app.apps.HomeAppConfig',
+    'account_app.apps.AccountAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +125,8 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
-    os.path.join(BASE_DIR, 'assets/vendor')
+    os.path.join(BASE_DIR, 'assets/vendor'),
+    os.path.join(BASE_DIR, 'account_app/static'),
 ]
 
 # Default primary key field type
