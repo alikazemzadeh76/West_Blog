@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-3!&#u=ig-r80$@6u_f)@4vmna_2%h&+!1&*ckvnxint(i*i7m&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,10 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cleanup.apps.CleanupConfig',
+    'django_render_partial',
+    'django_social_share',
+    'rest_framework',
 
     #my_app
     'home_app.apps.HomeAppConfig',
     'account_app.apps.AccountAppConfig',
+    'article_app.apps.ArticleAppConfig',
+    'contact_app.apps.ContactAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'context_processors.context_processors.resent_post',
+                'context_processors.context_processors.category_options',
             ],
         },
     },
@@ -109,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-ir'
 
 TIME_ZONE = 'UTC'
 
@@ -128,6 +136,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets/vendor'),
     os.path.join(BASE_DIR, 'account_app/static'),
 ]
+
+MEDIA_URL = 'media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

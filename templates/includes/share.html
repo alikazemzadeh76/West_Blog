@@ -1,0 +1,7 @@
+{% load static %}
+{% load social_share %}
+
+<ul class="post-share">
+    <li><i class="fa fa-share-alt"></i></li>
+    <li>{% post_to_whatsapp post.get_absolute_url "what's app" %}</li>
+</ul>

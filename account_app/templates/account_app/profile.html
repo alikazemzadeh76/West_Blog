@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>صفحه پروفایل کاربری</title>
+	<link rel="stylesheet" href="{% static 'css/bootstrap-rtl.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link type="text/css" href="{% static 'css/style1.css' %}" rel="stylesheet" />
+</head>
+<body class="profile-page" data-spy="scroll" data-target=".navbar" data-offset="50">
+<!-- The HEADER -->
+	<header id="header">
+		<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#"><img src="{% static 'pics/logo.png' %}"></a>
+				</div>
+				<div class="collapse navbar-collapse" id="navigation-example">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="{% url 'home_url:home' %}">صفحه نخست</a></li>
+						<li class="active"><a href="#">درباره ما</a></li>
+						<li class="active"><a href="{% url 'account_url:edit'  %}">ویرایش اطلاعات</a></li>
+						<li class="active"><a href="{% url 'account_url:logout' %}">خروج</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- Profile Picture -->
+        {% if user.profile.image %}
+            <img id="profilePic" src="{{ user.profile.image.url }}">
+        {% else %}
+            <img id="profilePic" src="{% static 'pics/avatar.jpg' %}">
+        {% endif %}
+		<div class="container-fluid" id="subheader">
+			<div class="row" id="row">
+				<div class="col-md-12">
+					<h1 id="name">{{ user.username }}</h1>
+				</div>
+			</div>
+		</div>
+	</header>
+<!-- sidebar -->
+	<main>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 col-sm-4 col-xs-12">
+					<!-- navigation side bar + tab -->
+					<ul class="nav nav-pills nav-pills-success nav-stacked">
+						<li class="active"><a data-toggle="pill" href="#about">بیوگرافی</a></li>
+						<li><a data-toggle="pill" href="#subset">گالری تصاویر</a></li>
+						<li><a data-toggle="pill" href="#adventures">مقالات</a></li>
+						<li><a data-toggle="pill" href="#contact">ارتباط با پشتیبان سایت</a></li>
+					</ul>
+
+					<!-- recent activity -->
+					<div class="recent">
+						<h4>رویداد ها </h4>
+						<ul>
+							<li> شما یک نظر از طرف <a class="text-success">احمد</a> دارید.</li>
+							<li> شما یک نظر از طرف <a class="text-success">احمد</a> دارید.</li>
+							<li> شما یک نظر از طرف <a class="text-success">احمد</a> دارید.</li>
+							<li> شما یک نظر از طرف <a class="text-success">احمد</a> دارید.</li>
+							<li> شما یک نظر از طرف <a class="text-success">احمد</a> دارید.</li>
+						</ul>
+						<a class="text-success more2">بیشتر</a>
+					</div>
+				</div>
+				<!-- start tab content -->
+				<div class="col-md-6 col-sm-8 col-xs-12">
+					<div class="tab-content">
+						<!-- about -->
+						<div id="about" class="tab-pane fade in active">
+							<h3>بیوگرافی</h3>
+							<p><span><i class="fa fa-user-circle"></i><strong>نام:</strong></span>{{ user.first_name }} {{ user.last_name }}</p>
+							<p><span><i class="fa fa-user-circle-o"></i><strong>نام کاربری :</strong></span>{{ user.username }}</p>
+							<p><span><i class="fa fa-calendar"></i><strong>تاریخ تولد :</strong></span> 1/1/98 </p>
+							<p><span><i class="fa fa-envelope"></i><strong>پست الکترونیک :</strong></span>{{ user.email }}</p>
+							<p><span><i class="fa fa-map-marker"></i><strong>آدرس :</strong></span> ایران | شبراز </p>
+							<p><span><i class="fa fa-phone"></i><strong>تلفن تماس :</strong></span> 07132309534 </p>
+						</div>
+						<!-- adventures and blog -->
+						<div id="adventures" class="tab-pane fade">
+							<h3>مقالات</h3>
+							<h4><i class="fa fa-pencil"></i> عنوان مقاله</h4>
+							<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+							<h4><i class="fa fa-pencil"></i> عنوان مقاله</h4>
+							<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+							<h4><i class="fa fa-pencil"></i> عنوان مقاله</h4>
+							<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+							<h4><i class="fa fa-pencil"></i> عنوان مقاله</h4>
+							<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+						</div>
+
+						<!-- subset -->
+						<div id="subset" class="tab-pane fade">
+							<h3>گالری تصاویر</h3>
+							<div class="row">
+								<div class="col-md-4 col-sm-4 col-xs-4">
+									<div class="thumbnail">
+										<img src="{% static 'pics/chopper.jpg' %}">
+										<div class="caption">
+											<p>صوفی <small>(jpg)</small><p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4 col-xs-4">
+									<div class="thumbnail">
+										<img src="{% static 'pics/chopper.jpg' %}">
+										<div class="caption">
+											<p>صوفی <small>(jpg)</small><p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4 col-xs-4">
+									<div class="thumbnail">
+										<img src="{% static 'pics/chopper.jpg' %}">
+										<div class="caption">
+											<p>صوفی <small>(jpg)</small><p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4 col-sm-4 col-xs-4">
+									<div class="thumbnail">
+										<img src="{% static 'pics/chopper.jpg' %}">
+										<div class="caption">
+											<p>صوفی <small>(jpg)</small><p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4 col-xs-4">
+									<div class="thumbnail">
+										<img src="{% static 'pics/chopper.jpg' %}">
+										<div class="caption">
+											<p>صوفی <small>(jpg)</small><p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4 col-xs-4">
+									<div class="thumbnail">
+										<img src="{% static 'pics/chopper.jpg' %}">
+										<div class="caption">
+											<p>صوفی <small>(jpg)</small><p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4 col-sm-4 col-xs-4">
+									<div class="thumbnail">
+										<img src="{% static 'pics/chopper.jpg' %}">
+										<div class="caption">
+											<p>صوفی <small>(jpg)</small><p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4 col-xs-4">
+									<div class="thumbnail">
+										<img src="{% static 'pics/chopper.jpg' %}">
+										<div class="caption">
+											<p>صوفی <small>(jpg)</small><p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4 col-xs-4">
+									<div class="thumbnail">
+										<img src="{% static 'pics/chopper.jpg' %}">
+										<div class="caption">
+											<p>صوفی <small>(jpg)</small><p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- contact form -->
+						<div id="contact" class="tab-pane fade">
+							<h3>ارتباط با پشتیبان سایت</h3>
+							<div class="card card-signup">
+								<form class="form" method="" action="">
+									<div class="content">
+										<div class="input-group">
+											 <span class="input-group-addon">
+												<i class="fa fa-user-circle"></i>نام
+											 </span>
+											<input type="text" class="form-control" placeholder="نام و نام خانوادگی">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">
+											  <i class="fa fa-envelope"></i>پست الکترونیک
+											</span>
+											<input type="text" class="form-control" placeholder="پست الکترونیک">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">
+											  <i class="fa fa-pencil"></i>متن پیام
+											</span>
+											<textarea placeholder="متن پیام ..." class="form-control" rows="3"></textarea>
+										</div>
+									</div>
+									<div class="footer text-center">
+										<a href="#" class="btn btn-simple btn-success btn-lg text-blue">ارسال پیام</a>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- left sidebar friends status -->
+				<div class="col-md-3 col-sm-12 col-xs-12">
+					<div id="onlineFriends">
+						<h3 class="about">وضعیت دوستان</h3>
+						<ul>
+							<li><button class="btn btn-success btn-xs"><img class="onlineFriendsPics" src="{% static 'pics/f-avatar.jpg' %}" width="35px"><span class="onlineFriendsNames">صفا</span></button><span class="text-success status"> آنلاین</span></li>
+							<li><button class="btn btn-danger btn-xs"><img class="onlineFriendsPics" src="{% static 'pics/f-avatar.jpg' %}" width="35px"><span class="onlineFriendsNames">مریم</span></button><span class="text-danger status"> آفلاین</span></li>
+							<li><button class="btn btn-success btn-xs"><img class="onlineFriendsPics" src="{% static 'pics/f-avatar.jpg' %}" width="35px"><span class="onlineFriendsNames">محسن</span></button><span class="text-success status"> آنلاین</span></li>
+							<li><button class="btn btn-primary btn-xs"><img class="onlineFriendsPics" src="{% static 'pics/f-avatar.jpg' %}" width="35px"><span class="onlineFriendsNames">احمد</span></button><span class="text-primary status"> در حال مکالمه</span></li>
+							<li><button class="btn btn-warning btn-xs"><img class="onlineFriendsPics" src="{% static 'pics/f-avatar.jpg' %}" width="35px"><span class="onlineFriendsNames">علی</span></button><span class="text-warning status"> معلق</span></li>
+							<li><button class="btn btn-primary btn-xs"><img class="onlineFriendsPics" src="{% static 'pics/f-avatar.jpg' %}" width="35px"><span class="onlineFriendsNames">سینا</span></button><span class="text-primary status"> در حال مکالمه</span></li>
+							<li><button class="btn btn-info btn-xs"><img class="onlineFriendsPics" src="{% static 'pics/f-avatar.jpg' %}" width="35px"><span class="onlineFriendsNames">مبینا</span></button><span class="text-info status"> مشغول</span></li>
+							<li><button class="btn btn-success btn-xs"><img class="onlineFriendsPics" src="{% static 'pics/f-avatar.jpg' %}" width="35px"><span class="onlineFriendsNames">میثم</span></button><span class="text-success status"> آنلاین</span></li>
+						</ul>
+						<a class="text-success more" href="#">بیشتر</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+<!-- page footer -->
+	<footer class="footer">
+		<div class="container">
+			<nav class="pull-left">
+				<div id="share-buttons">
+					<a href="#" target="_blank">
+						<i class="fa fa-facebook-square"></i>
+					</a>
+					<a href="#" target="_blank">
+						<i class="fa fa-twitter-square"></i>
+					</a>
+					<a href="#" target="_blank">
+						<i class="fa fa-instagram"></i>
+					</a>
+					<a href="#" target="_blank">
+						<i class="fa fa-telegram"></i>
+					</a>
+				</div>
+			</nav>
+			<div class="copyright pull-right">
+				translated By <a class="text-success" href="http://webrubik.com/" target="_blank">webrubik ❣</a>.
+			</div>
+		</div>
+	</footer>
+
+	<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body><!-- This template has been downloaded from Webrubik.com -->
+</html>

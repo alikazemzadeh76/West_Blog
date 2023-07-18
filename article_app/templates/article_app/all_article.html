@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load render_partial %}
+
+{% block content %}
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+        <section class="page-heading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-content">
+                            <h2>all post</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="blog-posts grid-system">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="all-blog-posts">
+                        <div class="row">
+                            {% for post in object_list %}
+                                <div class="col-lg-6">
+                                    <div class="blog-post">
+                                        <div class="blog-thumb">
+                                            <img src="{{ post.image.url }}" alt="">
+                                        </div>
+                                        <div class="down-content">
+                                            <span>{{ post.category.first }}</span>
+                                            <a href="{{ post.get_absolute_url }}"><h4>{{ post.title }}</h4></a>
+                                            <ul class="post-info">
+                                                <li><a href="#">{{ post.author }}</a></li>
+                                                <li><a href="#">{{ post.create_time }}</a></li>
+                                                <li><a href="#">{{ post.comments.count }} comment</a></li>
+                                            </ul>
+                                            <p>{{ post.description|slice:":20" }}</p>
+                                            <div class="post-options">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <ul class="post-tags">
+                                                            <li><a href="{% url 'blog:like' post.slug post.pk %}"><i
+                                                                    class="fa fa-heart-o"></i></a>5
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="col-lg-12">
+                                {% if page_obj.has_other_pages %}
+
+                                    <ul class="page-numbers">
+                                        {% if page_obj.has_previous %}
+                                            <li><a href="?page=
+                                                    {{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i
+                                                    class="fa fa-angle-double-left"></i></a></li>
+                                        {% endif %}
+                                        {% for item in page_obj.paginator.page_range %}
+                                            {% if page_obj.number == item %}
+                                                <li class="active"><a href="?page=
+                                                        {{ item }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ item }}</a>
+                                                </li>
+                                            {% else %}
+                                                <li><a href="?page=
+                                                        {{ item }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ item }}</a>
+                                                </li>
+
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if page_obj.has_next %}
+                                            <li><a href="?page=
+                                                    {{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i
+                                                    class="fa fa-angle-double-right"></i></a></li>
+                                        {% endif %}
+
+
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    {% include 'includes/sidebar.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
